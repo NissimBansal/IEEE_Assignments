@@ -1,3 +1,3 @@
 # IEEE_Assignments
-All homework and assignments of IEEE Envision.  
+All homework and assignments of IEEE Envision.
 Test
