@@ -1,4 +1,3 @@
 # Assignment 1
 
-## Part 1: Introduction to Timer Peripheral
-Peripheral
+## Part 1: Introduction to Timer Peripheral Peripheral
