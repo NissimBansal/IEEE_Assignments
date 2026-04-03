@@ -1,4 +1,4 @@
-<span style="color:blue"># Assignment 1</span>
+# Assignment 1
 
 ### Part 1: Introduction to Timer Peripheral
 Peripheral
