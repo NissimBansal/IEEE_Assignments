@@ -9,4 +9,4 @@ A software timer takes up unnecessary memory in CPU that could otherwise be used
 ### Basic working concepts of timers
 The registers used in achieving a bliinking LED are as follows-
 
-1. 
+- 
