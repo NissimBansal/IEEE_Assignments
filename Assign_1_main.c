@@ -1,10 +1,26 @@
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2026 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+
 #include <stdint.h>
 
 #define AHB1_RCC 0x40023800
 #define AHB1_GPIOA 0x40020000
 #define APB1_TIM2 0x40000000
-
-void TIM2_IRQHandler(void);
 
 int main(void)
 {
@@ -20,7 +36,7 @@ int main(void)
 
 	while(1)
 	{
-		__asm volatile ("wfi"); /* assembly code that makes cpu sleep until a flag is passed */
+		__asm volatile ("wfi"); /* assembly code that makes CPU sleep until a flag is passed */
 	}
 }
 

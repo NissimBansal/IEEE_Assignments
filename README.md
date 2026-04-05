@@ -9,7 +9,7 @@ Timer peripherals are hardware components that implement the working of a timer.
 A software timer takes up unnecessary memory in CPU that could otherwise be used by other functions. Instead, hardware timers do the counting by themselves silently in the background. While performing a software delay function, the CPU can't do anything else and has to wait for it to finish. Due to many hardware timers present in the board, you can use different timers to carry out different processes at the same time. If there is some other code between the iterations of delay, that time also gets added which is not a problem in hardware timers. 
 
 ### Basic working concepts of timers
-- Tick : The system clock oscillates at a fixed frequency and each complete oscillation is sent as a signal/pulse which is one tick. The APB1 bus (which is where our timer is) receives a clock signal of 84 MHz per second.
+- Tick : The system clock oscillates at a fixed frequency and each complete oscillation is sent as a signal/pulse which is one tick. The APB1 bus (which is where our timer is) receives a clock signal of 16 MHz.
 - Counter : The counter is the heart of the timer and is used as a unit which helps trigger overflow events and such. It increases by one every tick. 
 - Prescalar : It is a value which the incoming clock signal from system clocks is divided by before it reaches the counter. The formula is Frequency (counter) = Frequency (System) / [Prescalar value + 1].
 - Auto reload : It is also a value that defines the max value the counter can count upto before it resets and interrupt flag is sent.
@@ -21,7 +21,7 @@ A software timer takes up unnecessary memory in CPU that could otherwise be used
 TIM2 was chosen as it's a general purpose timer and it was really easy to configure the clock and other registers for it. 
 
 #### Prescalar value
-The PSC value chosen is 8399 as when we add 1, it becomes 8400 and 84 MHz divided by 8400 gives 10k ticks per second or 1 tick every 0.1 ms. This round number helps make further calculations easier.
+The PSC value chosen is 1599 as when we add 1, it becomes 1600 and 16 MHz divided by 1600 gives 10k ticks per second or 1 tick every 0.1 ms. This round number helps make further calculations easier.
 
 #### ARR calculation
 Since we want the LED to toggle every 2 seconds, this implies, ARR = (2s / 0.1 ms) - 1. I added -1 as ARR starts counting from 0. This gives ARR = 19,999.
