@@ -46,3 +46,10 @@ Since we want the LED to toggle every 2 seconds, this implies, ARR = (2s / 0.1 m
 
 #### What UART is and where it is used
 UART (Universal Asynchronous Receiver-Transmitter) is a widely used hardware communication protocol for data exchange between devices. It is asynchronous i.e. it uses no shared clock signal and instead relies on pre-configured baud rates (speed) and specific data framing (bits) to communicate between two devices. It uses 2 wires — Transmit (TX) and Receive (RX) — for all methods of communication. UART is used in embedded systems for debugging, GPS modules, Bluetooth modules and communication with PC serial ports. 
+
+#### Frame format
+Frames are the way in which UART protocol works on. It is a data packet which consists of around 10-12 bits. When no data is transmitted, line is held high (1 state). The bits (in order) in a frame are as follows-
+- Start bit : It is just a transition from high to low state.
+- Data bits : These bits are what actaully transfer data. They are usually 8 in number and send data starting from the LSB.
+- Parity bit : It is a bit put between data and stop bits and is used for error detection. Its value depends on if we are using even parity or odd parity.
+- Stop bit(s) : After the data and parity bits, the stop bit indicates the end of user data. It's either a transition back to the idle state or remaining at the high state for an additional bit time.
