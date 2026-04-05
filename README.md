@@ -2,7 +2,7 @@
 
 ## Part 1: Timer-Based LED Control
 
-### Introduction to Timer Peripheral in Microcontrollers
+### <u>Introduction to Timer Peripheral in Microcontrollers</u>
 Timer peripherals are hardware components that implement the working of a timer. A timer is a simply counter that works by itself driven by a clock. It can track time, measure external pulse widths/signals, trigger events (like ADC and DAC conversions) without any help from the CPU.
 
 ### Why are hardware timers preferred over software delay functions? 
