@@ -58,5 +58,4 @@ Frames are the way in which UART protocol works on. It is a data packet which co
 Baud rate is the speed at which both the transmitter and receiver work. It is a value that makes their timing exact which could otherwise lead to corruption of data.
 
 #### Asynchronous communication concept
-
-Asynchronous communication is the exchange of information where the sender and receiver do not interact in real-time, allowing for a time lag between sending a message and receiving a response
+Asynchronous communication is the exchange of information where the sender and receiver do not interact in real-time, allowing for a time lag between sending a message and receiving a response.
