@@ -43,4 +43,4 @@ Since we want the LED to toggle every 2 seconds, this implies, ARR = (2s / 0.1 m
 ## Part 2: UART Communication
 
 ### UART Protocol Explanation
-UART (Universal Asynchronous Receiver-Transmitter) is a widely used hardware communication protocol for data exchange between devices. It is asynchronous i.e. it uses no shared clock signal and instead relies on pre-configured baud rates (speed) and specific data framing (bits) to communicate between two devices.
+UART (Universal Asynchronous Receiver-Transmitter) is a widely used hardware communication protocol for data exchange between devices. It is asynchronous i.e. it uses no shared clock signal and instead relies on pre-configured baud rates (speed) and specific data framing (bits) to communicate between two devices. It uses 2 wires — Transmit (TX) and Receive (RX) — for all methods of communication. UART is used in embedded systems for debugging, GPS modules, Bluetooth modules and communication with PC serial ports. 
