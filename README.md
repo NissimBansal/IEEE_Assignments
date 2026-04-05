@@ -12,3 +12,4 @@ A software timer takes up unnecessary memory in CPU that could otherwise be used
 - Counter : The counter is the heart of the timer and is used as a unit which helps trigger overflow events and such. It increases by one every tick. 
 - Prescalar : It is a value which the incoming clock signal from system clocks is divided by before it reaches the counter. The formula is Frequency(counter) = Frequency(System)/[Prescalar value + 1].
 - Auto reload : It is also a value that defines the max value the counter can count upto before it resets and and interrupt flag is sent.
+- Interrupt file : It is a signal sent to the CPU which wakes it up and ultimately leads it functions like toggling LED, clearing flag and resetting counter.
