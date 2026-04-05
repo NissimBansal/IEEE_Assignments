@@ -23,3 +23,5 @@ TIM2 was chosen as it's a general purpose timer and it was really easy to config
 #### Prescalar value
 The PSC value chosen is 8399 as when we add 1, it becomes and 84 MHz divided by 8400 gives 10k ticks per second or 1 tick every 0.1 ms. This round number helps make further calculations easier.
 
+#### ARR calculation
+Since we want the LED to toggle every 2 seconds, this implies, ARR = (2s / 0.1 ms) - 1. I added -1 as ARR starts counting from 0; 
