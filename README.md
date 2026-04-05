@@ -36,4 +36,5 @@ Since we want the LED to toggle every 2 seconds, this implies, ARR = (2s / 0.1 m
 #### How the update flag is used for timing
 1. First the counter goes upto the value set by auto-reload register and when it reaches that value it sets the status register automatically to 1 (flag).
 2. This is then sent by a channel enabled via DIER and goes through NVIC to CPU.
-3. The CPU carries out TIM2_IRQHandler function which resets flag status to 0 and toggles LED whilst the counter is counting independently starting the cycle again.
+3. The CPU carries out TIM2_IRQHandler function which is already defined but we can write it differently in our .c file which resets flag status to 0 and toggles LED.
+4. The counter is counting independently starting the cycle again.
