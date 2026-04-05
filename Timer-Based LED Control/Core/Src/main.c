@@ -45,4 +45,3 @@ void TIM2_IRQHandler(void)
 	*((volatile uint32_t*)(APB1_TIM2 + 0x10)) &= ~(1 << 0); /* resets the flag */
 	*((volatile uint32_t*)(AHB1_GPIOA + 0x14)) ^= (1 << 5); /* toggles LED between ON & OFF */
 }
-
