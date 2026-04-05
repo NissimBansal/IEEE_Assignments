@@ -12,3 +12,8 @@ A software timer takes up unnecessary memory in CPU that could otherwise be used
 - Prescalar : It is a value which the incoming clock signal from system clocks is divided by before it reaches the counter. The formula is Frequency(counter) = Frequency(System)/[Prescalar value + 1].
 - Auto reload : It is also a value that defines the max value the counter can count upto before it resets and and interrupt flag is sent.
 - Interrupt file : It is a signal sent to the CPU which wakes it up and ultimately leads it functions like toggling LED, clearing flag and resetting counter.
+### Register Configuration for 2-Second Delay
+#### Choice of Timer
+TIM2 was chosen as it's a general purpose timer and it was really easy to configure the clock and other registers for it. 
+### Prescalar value
+The PSC value chosen is 8399 as when we add 1, it becomes and 84 MHz divided by 8400 gives 10k ticks per second or 1 tick every 0.1 ms. This round number helps make further calculations easier.
