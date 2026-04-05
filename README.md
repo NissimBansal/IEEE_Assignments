@@ -53,3 +53,10 @@ Frames are the way in which UART protocol works on. It is a data packet which co
 - Data bits : These bits are what actaully transfer data. They are usually 8 in number and send data starting from the LSB.
 - Parity bit : It is a bit put between data and stop bits and is used for error detection. Its value depends on if we are using even parity or odd parity.
 - Stop bit(s) : After the data and parity bits, the stop bit indicates the end of user data. It's either a transition back to the idle state or remaining at the high state for an additional bit time.
+
+#### Baud rate and its significance
+Baud rate is the speed at which both the transmitter and receiver work. It is a value that makes their timing exact which could otherwise lead to corruption of data.
+
+#### Asynchronous communication concept
+
+Asynchronous communication is the exchange of information where the sender and receiver do not interact in real-time, allowing for a time lag between sending a message and receiving a response
