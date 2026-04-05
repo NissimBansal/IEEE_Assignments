@@ -28,8 +28,8 @@ int main(void)
 	*((volatile uint32_t*)(AHB1_RCC + 0x40)) |= (1 << 0); /* enabling clock for TIM2 */
 	*((volatile uint32_t*)(AHB1_GPIOA)) |= (1 << 10); /* setting MODER5 to output */
 	*((volatile uint32_t*)(AHB1_GPIOA)) &= ~(1 << 11); /* setting MODER5 to output */
-	*((volatile uint32_t*)(APB1_TIM2 + 0x28)) = 7999; /* setting prescalar */
-	*((volatile uint32_t*)(APB1_TIM2 + 0x2C)) = 3999; /* setting auto-reload */
+	*((volatile uint32_t*)(APB1_TIM2 + 0x28)) = 1599; /* setting prescalar */
+	*((volatile uint32_t*)(APB1_TIM2 + 0x2C)) = 19999; /* setting auto-reload */
 	*((volatile uint32_t*)(APB1_TIM2 + 0x0C)) |= (1 << 0); /* enabling DIER / interrupt channel */
 	*((volatile uint32_t*)(0xE000E100)) |= (1 << 28); /*  NVIC now responds to TIM2_DIER changes*/
 	*((volatile uint32_t*)(APB1_TIM2)) |= (1 << 0); /* starts counter */
