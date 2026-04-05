@@ -39,4 +39,5 @@ Since we want the LED to toggle every 2 seconds, this implies, ARR = (2s / 0.1 m
 3. The CPU carries out TIM2_IRQHandler function which is already defined but we can write it differently in our .c file which resets flag status to 0 and toggles LED.
 4. The counter is counting independently starting the cycle again. 
 
+
 ## Part 2: UART Communication
