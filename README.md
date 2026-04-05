@@ -28,6 +28,7 @@ Since we want the LED to toggle every 2 seconds, this implies, ARR = (2s / 0.1 m
 
 #### Control and Status Registers
 - Control enable register : It is used to start the counter.
-- DMA/Interrupt enable register : It is used to send an interrupt to CPU when counter overflows ARR. 
+- Status register : It generates an interrupt by setting itself to 1 whenever counter overflows ARR.
+- DMA/Interrupt enable register : It allows the update/interrupt to go towards NVIC (Nested vectored interrupt controller), otherwise an overflowing timer doesn't mean anything.
 - Nested vectored interrupt controller : Used to enable the line through which the interrupt is sent to the CPU.
 - GPIOA ODR : There is an XOR gate connected to this register that toggles the LED every 2 seconds.
