@@ -71,3 +71,6 @@ Asynchronous communication is the exchange of data between transmitter (TX) and 
 - USART2_SR : 
 
 #### Baud rate calculation
+
+
+#### Steps involved in transmitting data
