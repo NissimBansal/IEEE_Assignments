@@ -74,3 +74,4 @@ Asynchronous communication is the exchange of data between transmitter (TX) and 
 The baud rate I'm aiming for is 115,200. The formula for the divisor is USARTDIV = clock frequency / (16 × BaudRate). Since UART is asynchronous so it oversamples the incoming line at 16 times the baud rate and picks the middle sample. This gives noise immunity. This is the reason for the 1/16 factor. Clock frequency is 16 MHz as that what APB1 bus gets. To get 115,200 baud rate, we get USARTDIV = 8.6085 which is 0x008B in hex.
 
 #### Steps involved in transmitting data
+When we press reset button on the board, all the pins that are to be configured once do so. 
