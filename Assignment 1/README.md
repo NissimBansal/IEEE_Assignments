@@ -1,5 +1,3 @@
-# Assignment 1
-
 ## Part 1: Timer-Based LED Control
 
 ### Introduction to Timer Peripheral in Microcontrollers
