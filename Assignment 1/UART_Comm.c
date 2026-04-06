@@ -25,7 +25,7 @@
 
 static void send_byte(uint8_t b)
 {
-    while (!((volatile uint32_t*)(APB1_USART2)) & USART_SR_TXE)); /* keep checking SR and TXE until TXE becomes 1, then DR executes */
+    while (!(*((volatile uint32_t*)(APB1_USART2)) & USART_SR_TXE)); /* keep checking SR and TXE until TXE becomes 1, then DR executes */
     *((volatile uint32_t*)(APB1_USART2 + 0x04)) = b; /* writing one byte to data register */
 }
 
