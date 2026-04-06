@@ -63,3 +63,6 @@ Asynchronous communication is the exchange of data between transmitter (TX) and 
 ### Implementation Details
 
 #### Registers used for UART configuration
+- RCC_AHB1ENR & RCC_APB1ENR : Enables GPIOA and USART2 clocks. 
+- GPIOA_MODER : Used to set PA2 (TX) and PA3 (RX) to alterate function mode.
+- 
