@@ -55,7 +55,7 @@ Frames are the way in which UART protocol works on. It is a data packet which co
 - Stop bit(s) : After the data and parity bits, the stop bit indicates the end of user data. It's either a transition back to the idle state or remaining at the high state for an additional bit time.
 
 #### Baud rate and its significance
-Baud rate is the speed at which both the transmitter and receiver work. It is a value that makes their timing exact which could otherwise lead to corruption of data.
+Baud rate is the speed at which both the transmitter and receiver work. It is the number of bits transmitted per second. It makes the transmitter's and receiver's timing exact which could otherwise lead to corruption of data.
 
 #### Asynchronous communication concept
 Asynchronous communication is the exchange of data between transmitter (TX) and receiver (RX) without a shared clock signal. Thus, both deviced need to have a pre-configured speed (baud rate) and special bits that act as fixed intervals at which data is read.
@@ -71,6 +71,6 @@ Asynchronous communication is the exchange of data between transmitter (TX) and 
 - USART2_SR : 
 
 #### Baud rate calculation
-The baud rate I'm aiming for is 115,200. The formula for the divisor is     Also, since UART is asynchronous so it oversamples the incoming line at 16 times the baud rate and picks the middle sample. This gives noise immunity. 
+The baud rate I'm aiming for is 115,200. The formula for the divisor is USARTDIV = clock frequency / (16 × BaudRate). Since UART is asynchronous so it oversamples the incoming line at 16 times the baud rate and picks the middle sample. This gives noise immunity. This is the reason for the 1/16 factor. Clock frequency is 16 MHz as that what APB1 bus gets. To get
 
 #### Steps involved in transmitting data
