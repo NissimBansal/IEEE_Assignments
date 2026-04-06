@@ -71,6 +71,6 @@ Asynchronous communication is the exchange of data between transmitter (TX) and 
 - USART2_SR : 
 
 #### Baud rate calculation
-
+The baud rate I'm aiming for is 115,200. The formula for the divisor is     Also, since UART is asynchronous so it oversamples the incoming line at 16 times the baud rate and picks the middle sample. This gives noise immunity. 
 
 #### Steps involved in transmitting data
