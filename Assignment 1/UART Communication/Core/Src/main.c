@@ -25,8 +25,8 @@
 
 static void send_byte(uint8_t b)
 {
-    while (!(USART2->SR & USART_SR_TXE)); /* keep checking SR and TXE until TXE becomes 1, then DR executes */
-    USART2->DR = b; /* writing one byte to data register */
+    while (!(*((volatile uint32_t*)(APB1_USART2)) & USART_SR_TXE)); /* keep checking SR and TXE until TXE becomes 1, then DR executes */
+    *((volatile uint32_t*)(APB1_USART2 + 0x04)) = b; /* writing one byte to data register */
 }
 
 static void send_string(const char *s)
