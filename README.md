@@ -65,4 +65,9 @@ Asynchronous communication is the exchange of data between transmitter (TX) and 
 #### Registers used for UART configuration
 - RCC_AHB1ENR & RCC_APB1ENR : Enables GPIOA and USART2 clocks. 
 - GPIOA_MODER : Used to set PA2 (TX) and PA3 (RX) to alterate function mode.
-- 
+- GPIOA_AFRL : Used to indicate that PA2 and PA3 are controlled by TX and RX of USART2 respectively.
+- USART2_BRR : Used to set baud rate divisor to achieve intended baud rate.
+- USART2_CR1 : It enables TX, RX, USART.
+- USART2_SR : 
+
+#### Baud rate calculation
