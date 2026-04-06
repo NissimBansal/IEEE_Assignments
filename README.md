@@ -68,10 +68,14 @@ Asynchronous communication is the exchange of data between transmitter (TX) and 
 - GPIOA_AFRL : Used to indicate that PA2 and PA3 are controlled by TX and RX of USART2 respectively.
 - USART2_BRR : Used to set baud rate divisor to achieve intended baud rate.
 - USART2_CR1 : It enables TX, RX, USART.
-- USART2_SR : 
+- USART2_SR : This register has bits that are used to tell the status of the byte that is transmitted / received. Whether it's ready to be transmitted or read or completed, etc.
+- USART2_DR : This is actually 2 registers having the same address that can work as a store to transmit bytes or store them until they are read by the microcontroller.
 
 #### Baud rate calculation
 The baud rate I'm aiming for is 115,200. The formula for the divisor is USARTDIV = clock frequency / (16 × BaudRate). Since UART is asynchronous so it oversamples the incoming line at 16 times the baud rate and picks the middle sample. This gives noise immunity. This is the reason for the 1/16 factor. Clock frequency is 16 MHz as that what APB1 bus gets. To get 115,200 baud rate, we get USARTDIV = 8.6085 which is 0x008B in hex.
 
 #### Steps involved in transmitting data
-When we press reset button on the board, all the pins that are to be configured once do so. 
+1. When we press reset button on the board, all the pins that are to be configured once do so.
+2.  The TXE in the status register flips to 1 which indicates that the byte is ready to be taken and transmitted.
+3. The byte is then loaded to TX data register from where the shift register loads the byte in hex form and begins transmitting it to the RealTerm terminal bit by bit (LSB first). TXE remains at 0 whilst this happens.
+4. After data has been transmitted, the TXE sets to 1 ready for another byte of data and our computer displays the sent bit.
