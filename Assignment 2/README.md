@@ -12,3 +12,5 @@ Most STM32 microcontrollers use Successive Approximation Register or SAR ADCs. I
 2. The SARs in STM sets the SAR's MSB to 1 which the internal DAC converts to an analog voltage level.
 3. A comparator checks this voltage from the capacitor voltage and updates SAR.
 4. The process moves to the next bit. SAR sets it to 1, the DAC produces a new voltage based on the updated register and the comparator checks the result again. This continues down to all the bits and final result is stored in ADC data register.
+
+### List of all registers used
