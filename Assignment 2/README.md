@@ -9,4 +9,4 @@ Resolution defines the number of discrete values that are accpeted by a micropro
 ### ADC used in STM32 and its working
 Most STM32 microcontrollers use Successive Approximation Register or SAR ADCs. It is called so because its mechanism involves successively approximating input voltage. Here's how it works exactly-
 1. The input switch is closed charging an internal capacitor to that voltage level. Switch closes to freeze this voltage.
-2. The SARs in STM sets the MSB to 1 which the internal DAC converts to an analog voltage level. It is given by V_DAC = \frac{V_REF(3.3 V)}{4095(as 12 bits so value can go from 0 -> 4095)} * Binary input.
+2. The SARs in STM sets the MSB to 1 which the internal DAC converts to an analog voltage level. It is given by $$ V_DAC = \frac{V_REF(3.3 V)}{4095(as 12 bits so value can go from 0 -> 4095)} * Binary input. $$ 
