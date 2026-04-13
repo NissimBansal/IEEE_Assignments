@@ -18,3 +18,8 @@ Most STM32 microcontrollers use Successive Approximation Register or SAR ADCs. I
 - GPIO: Used to set pins to different modes. For example- PA0 to analog, PA2 to USART2.
 - ADC: They are the main working point in our project. They include control, sample and sequence registers which help to set up how incoming voltage is sampled, how it is stored and processed.
 - USART: These registers communicate with the terminal on our PC thorugh the ST-link to display the digital voltage result there.
+
+
+## Part 2: Digital-to-Analog Converter
+
+### How are digital values converted into analog voltage
