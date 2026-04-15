@@ -60,16 +60,16 @@ int main()
 
 	while (1)
 	{
-		uint16_t DAC_Value = adc_reading();
+		uint16_t DAC_Value = adc_reading(); /* Get raw value from ADC */
 
 		int32_t delta = (int32_t)DAC_Value - (int32_t)last_DAC_Value;
 
-		if ((delta > 8) || (delta < -8)) /* enough to check if knob was rotated but eliminate noise */
+		if ((delta > 8) || (delta < -8)) /* Enough to check if knob was rotated but eliminate noise */
 		{
 			uart_puts("Voltage: ");
 			uart_print_voltage(DAC_Value);
 			uart_puts("\r\n");
-			last_DAC_Value = DAC_Value;
+			last_DAC_Value = DAC_Value; /* Only do if new voltage printed */
 		}
 		delay(50);
 	}
@@ -84,15 +84,15 @@ uint16_t adc_reading()
 
 void uart_print_voltage(uint16_t V)
 {
-	uint16_t cV = (V * 330) / 4095;
+	uint16_t cV = (V * 330) / 4095; /* Convert raw into centivolts as easy to work with */
 	uint16_t volt_int = cV / 100;
 	uint16_t volt_frac = cV % 100;
 
-	uart_putc((char)cV);
+	uart_putc((char)volt_int);
 	uart_putc('.');
-	if (volt_frac < 10) uart_putc('0');
-	else uart_putc((char)(volt_frac / 10));
-	uart_putc((char)(volt_frac % 10));
+	if (volt_frac < 10) uart_putc('0'); /* For cases like V = 2.09 V */
+	else uart_putc((char)(volt_frac / 10)); /* For cases like V = 2.19 V */
+	uart_putc((char)(volt_frac % 10)); /* Print last decimal of voltage */
 	uart_putc('V');
 }
 
