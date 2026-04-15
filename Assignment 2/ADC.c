@@ -90,7 +90,7 @@ void uart_print_voltage(uint16_t a)
 
 void uart_puts(char *s)
 {
-
+	while (*s) uart_putc(*s++); /* Sends data character wise until string finishes */
 }
 
 void delay(uint32_t ms)
