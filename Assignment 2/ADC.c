@@ -101,6 +101,6 @@ void uart_putc(char c)
 
 void delay(uint32_t ms)
 {
-	for (uint32_t t = 0; t < ms; t++)
+	for (uint32_t t = 0; t < ms; t++) /* Each iteration of t = ~1ms */
 		for (volatile uint32_t c = 0; c < 3200; c++) __NOP();
 }
