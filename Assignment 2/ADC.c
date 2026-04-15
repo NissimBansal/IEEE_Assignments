@@ -64,7 +64,7 @@ int main()
 
 		int32_t delta = (int32_t)DAC_Value - (int32_t)last_DAC_Value;
 
-		if ((delta > 8) || (delta < -8)) /* this is approx 6.4 mV, good to check if knob was rotated but not because of noise */
+		if ((delta > 8) || (delta < -8)) /* this is approx a difference of 6.4 mV, good to check if knob was rotated but not because of noise */
 		{
 
 		}
