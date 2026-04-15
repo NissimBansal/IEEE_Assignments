@@ -85,9 +85,15 @@ uint16_t adc_reading()
 void uart_print_voltage(uint16_t V)
 {
 	uint16_t cV = (V * 330) / 4095;
-	uint16_t tenths = (V * 330) / 4095;
-	uint16_t hundreths = (V * 330) / 4095;
+	uint16_t volt_int = cV / 100;
+	uint16_t volt_frac = cV % 100;
 
+	uart_putc((char)cV);
+	uart_putc('.');
+	if (volt_frac < 10) uart_putc('0');
+	else uart_putc((char)(volt_frac / 10));
+	uart_putc((char)(volt_frac % 10));
+	uart_putc('V');
 }
 
 void uart_puts(char *s)
