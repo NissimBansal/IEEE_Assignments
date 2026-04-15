@@ -66,9 +66,11 @@ int main()
 
 		if ((delta > 8) || (delta < -8)) /* enough to check if knob was rotated but eliminate noise */
 		{
+			uart_puts("Voltage: ");
 			uart_print_voltage(DAC_Value);
+			uart_puts("\r\n");
+			last_DAC_Value = DAC_Value;
 		}
-
 		delay(50);
 	}
 }
