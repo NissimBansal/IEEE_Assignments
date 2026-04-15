@@ -44,7 +44,7 @@ void init()
 	ADC1 -> SQR1 &= ~(15 << 20); /* Only 1 conversion */
 	ADC1 -> SMPR2 |= (7 << 3); /* Sampling time to 480 cycles */
 	ADC1 -> CR2 |= (1 << 0); /* Power on ADC */
-	for (volatile uint32_t i = 0; i < 320; i++) __NOP(); /* To give time to internal circuits to stabilize  */
+	for (volatile uint32_t i = 0; i < 320; i++) __NOP(); /* To give internal circuits time to stabilize */
 
 	USART2 -> BRR = 0x008B; /* Baud rate set */
 	USART2 -> CR1 |= (1<< 13); /* USART2 on */
@@ -64,7 +64,7 @@ int main()
 
 		int32_t delta = (int32_t)DAC_Value - (int32_t)last_DAC_Value;
 
-		if ((delta > 8) || (delta < -8)) /* this is approx a difference of 6.4 mV, good to check if knob was rotated but not because of noise */
+		if ((delta > 8) || (delta < -8)) /* enough to check if knob was rotated but eliminate noise */
 		{
 			uart_print_voltage(DAC_Value);
 		}
@@ -80,17 +80,23 @@ uint16_t adc_reading()
 	return (uint16_t)ADC1 -> DR; /* Reading ADC_DR resets EOC to 1 */
 }
 
-void uart_print_voltage(uint16_t a)
+void uart_print_voltage(uint16_t V)
 {
-	uint16_t cV = (a * 330) / 4095;
-	uint16_t tenths = (a * 330) / 4095;
-	uint16_t hundreths = (a * 330) / 4095;
+	uint16_t cV = (V * 330) / 4095;
+	uint16_t tenths = (V * 330) / 4095;
+	uint16_t hundreths = (V * 330) / 4095;
 
 }
 
 void uart_puts(char *s)
 {
 	while (*s) uart_putc(*s++); /* Sends data character wise until string finishes */
+}
+
+void uart_putc(char c)
+{
+	while(!(USART2 -> SR && USART_SR_TXE)); /* Loop till byte has been sent successfully */
+	USART2 -> DR = (uint8_t)c; /* Writing one byte to data register */
 }
 
 void delay(uint32_t ms)
