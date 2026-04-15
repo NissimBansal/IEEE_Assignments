@@ -19,7 +19,7 @@
 #include "stm32f446xx.h"
 #include <stdint.h>
 
-void Initialize()
+void init()
 {
 	RCC -> AHB1ENR |= (1 << 0); /* Clock for GPIOA */
 	RCC -> APB1ENR |= (1 << 17); /* Clock for UART */
@@ -54,27 +54,47 @@ void Initialize()
 
 int main()
 {
-	Initialize();
+	init();
 
 	uint16_t last_DAC_Value = 4500; /* A value impossible to have in ADC */
 
 	while (1)
 	{
-		uint16_t DAC_Value = ADC_Reading();
+		uint16_t DAC_Value = adc_reading();
 
 		int32_t delta = (int32_t)DAC_Value - (int32_t)last_DAC_Value;
 
 		if ((delta > 8) || (delta < -8)) /* this is approx a difference of 6.4 mV, good to check if knob was rotated but not because of noise */
 		{
-
+			uart_print_voltage(DAC_Value);
 		}
+
+		delay(50);
 	}
 }
 
-uint16_t ADC_Reading()
+uint16_t adc_reading()
 {
 	ADC1 -> CR2 |= (1 << 30); /* Take a single sample */
 	while (!(ADC1 -> DR && ADC_SR_EOC)); /* Keep looping while taking sample */
 	return (uint16_t)ADC1 -> DR; /* Reading ADC_DR resets EOC to 1 */
 }
 
+void uart_print_voltage(uint16_t a)
+{
+	uint16_t cV = (a * 330) / 4095;
+	uint16_t tenths = (a * 330) / 4095;
+	uint16_t hundreths = (a * 330) / 4095;
+
+}
+
+void uart_puts(char *s)
+{
+
+}
+
+void delay(uint32_t ms)
+{
+	for (uint32_t t = 0; t < ms; t++)
+		for (volatile uint32_t c = 0; c < 3200; c++) __NOP();
+}
