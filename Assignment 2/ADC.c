@@ -19,6 +19,13 @@
 #include "stm32f446xx.h"
 #include <stdint.h>
 
+void init(void);
+uint16_t adc_read(void);
+void uart_print_voltage(uint16_t V);
+void uart_puts(char *s);
+void uart_putc(char c);
+void delay(uint32_t ms);
+
 void init()
 {
 	RCC -> AHB1ENR |= (1 << 0); /* Clock for GPIOA */
@@ -60,7 +67,7 @@ int main()
 
 	while (1)
 	{
-		uint16_t DAC_Value = adc_reading(); /* Get raw value from ADC */
+		uint16_t DAC_Value = adc_read(); /* Get raw value from ADC */
 
 		int32_t delta = (int32_t)DAC_Value - (int32_t)last_DAC_Value;
 
@@ -75,24 +82,24 @@ int main()
 	}
 }
 
-uint16_t adc_reading()
+uint16_t adc_read(void)
 {
 	ADC1 -> CR2 |= (1 << 30); /* Take a single sample */
-	while (!(ADC1 -> DR && ADC_SR_EOC)); /* Keep looping while taking sample */
+	while (!(ADC1 -> DR & ADC_SR_EOC)); /* Keep looping while taking sample */
 	return (uint16_t)ADC1 -> DR; /* Reading ADC_DR resets EOC to 1 */
 }
 
 void uart_print_voltage(uint16_t V)
 {
-	uint16_t cV = (V * 330) / 4095; /* Convert raw into centivolts as easy to work with */
-	uint16_t volt_int = cV / 100;
-	uint16_t volt_frac = cV % 100;
+	uint32_t cV = ((uint32_t)V * 330) / 4095; /* Convert raw into centivolts as easy to work with */
+	uint32_t volt_int = cV / 100;
+	uint32_t volt_frac = cV % 100;
 
-	uart_putc((char)volt_int);
+	uart_putc('0' + (char)volt_int);
 	uart_putc('.');
 	if (volt_frac < 10) uart_putc('0'); /* For cases like V = 2.09 V */
-	else uart_putc((char)(volt_frac / 10)); /* For cases like V = 2.19 V */
-	uart_putc((char)(volt_frac % 10)); /* Print last decimal of voltage */
+	else uart_putc('0' + (char)(volt_frac / 10)); /* For cases like V = 2.19 V */
+	uart_putc('0' + (char)(volt_frac % 10)); /* Print last decimal of voltage */
 	uart_putc('V');
 }
 
@@ -103,7 +110,7 @@ void uart_puts(char *s)
 
 void uart_putc(char c)
 {
-	while(!(USART2 -> SR && USART_SR_TXE)); /* Loop till byte has been sent successfully */
+	while(!(USART2 -> SR & USART_SR_TXE)); /* Loop till byte has been sent successfully */
 	USART2 -> DR = (uint8_t)c; /* Writing one byte to data register */
 }
 
