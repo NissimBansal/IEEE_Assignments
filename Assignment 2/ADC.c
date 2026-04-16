@@ -34,7 +34,7 @@ void init()
 
 	GPIOA -> MODER |= (3 << 2); /* PA1 to analog mode */
 	GPIOA -> MODER &= ~(1 << 4); /* PA2 to AF mode */
-	GPIOA -> MODER |= (1 << 4); /* PA2 to AF mode */
+	GPIOA -> MODER |= (1 << 5); /* PA2 to AF mode */
 	GPIOA -> AFR[0] &= ~(1 << 11); /* PA2 to AF7 or USART2_TX */
 	GPIOA -> AFR[0] |= (1 << 10); /* PA2 to AF7 or USART2_TX */
 	GPIOA -> AFR[0] |= (1 << 9); /* PA2 to AF7 or USART2_TX */
@@ -71,7 +71,7 @@ int main()
 
 		int32_t delta = (int32_t)DAC_Value - (int32_t)last_DAC_Value;
 
-		if ((delta > 8) || (delta < -8)) /* Enough to check if knob was rotated but eliminate noise */
+		if ((delta > 12) || (delta < -12)) /* Enough to check if knob was rotated but eliminate noise */
 		{
 			uart_puts("Voltage: ");
 			uart_print_voltage(DAC_Value);
@@ -85,7 +85,7 @@ int main()
 uint16_t adc_read(void)
 {
 	ADC1 -> CR2 |= (1 << 30); /* Take a single sample */
-	while (!(ADC1 -> DR & ADC_SR_EOC)); /* Keep looping while taking sample */
+	while (!(ADC1 -> SR & ADC_SR_EOC)); /* Keep looping while taking sample */
 	return (uint16_t)ADC1 -> DR; /* Reading ADC_DR resets EOC to 1 */
 }
 
