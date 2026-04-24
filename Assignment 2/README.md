@@ -23,3 +23,4 @@ Most STM32 microcontrollers use Successive Approximation Register or SAR ADCs. I
 ## Part 2: Digital-to-Analog Converter
 
 ### How are digital values converted into analog voltage?
+.
