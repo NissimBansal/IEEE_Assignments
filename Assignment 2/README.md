@@ -15,7 +15,7 @@ Most STM32 microcontrollers use Successive Approximation Register or SAR ADCs. I
 
 ### List of all registers used
 - RCC: These registers are used to enable clocks for buses which in turn enable ADC, GPIO and UART registers.
-- GPIO: Used to set pins to different modes. For example- PA0 to analog, PA2 to USART2.
+- GPIO: Used to set pins to different modes. For example- PA0 to analog, PA2 to USART2(through AF mode).
 - ADC: They are the main working point in our project. They include control, sample and sequence registers which help to set up how incoming voltage is sampled, how it is stored and processed.
 - USART: These registers communicate with the terminal on our PC thorugh the ST-link to display the digital voltage result there.
 
