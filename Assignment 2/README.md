@@ -23,10 +23,10 @@ Most STM32 microcontrollers use Successive Approximation Register or SAR ADCs. I
 ## Part 2: Digital-to-Analog Converter
 
 ### How are digital values converted into analog voltage?
-
+The value to be converted is present in holding registers of DAC, they are transferred to the output registers every APB1 clock cycle if no hardware trigger is selected but 3 APB1 clock cycles later if hardware trigger is selected and a trigger occurs. It is then converted into an analog value by the formula DAC(output) = V(REF) * DOR / 4096. Here V(REF) = typically 3.3 V.
 
 ### What DAC is used in STM32?
-
+STM32 uses R-2R resistor-ladder (string) DAC to convert a binary input into an analog output voltage.
 
 ### List of all registers used
 - RCC: These registers are used to enable clocks for buses which in turn enable DAC and GPIO registers.
