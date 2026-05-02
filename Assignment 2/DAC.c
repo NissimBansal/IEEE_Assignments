@@ -41,7 +41,7 @@ int main()
 
 	while (1)
 	{
-		for (uint16_t value = 0; value <= 4095; value++)
+		for (uint16_t value = 0; value <= 4095; value++) /* Code to generate sawtooth wave */
 		{
 			DAC -> DHR12R1 = value; /* put the value into DAC holding register */
 			delay_us(4); /* 4 microseconds of t(settling) for data to go into DOR */
