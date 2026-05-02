@@ -20,6 +20,7 @@
 #include <stdint.h>
 
 void init(void);
+void delay_us(volatile uint32_t us);
 
 void init(void)
 {
@@ -37,4 +38,21 @@ void init(void)
 int main()
 {
 	init();
+
+	while (1)
+	{
+		for (uint16_t value = 0; value <= 4095; value++)
+		{
+			DAC -> DHR12R1 = value;
+			delay_us(4); /* 4 microseconds of t(settling) */
+		}
+	}
+}
+
+void delay_us(volatile uint32_t us)
+{
+	while (us--)
+	{
+		for (volatile int i = 0; i < 16; i++) __NOP(); /* To give 1 microseconds of delay */
+	}
 }
