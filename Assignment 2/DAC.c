@@ -18,3 +18,23 @@
 
 #include "stm32f446xx.h"
 #include <stdint.h>
+
+void init(void);
+
+void init(void)
+{
+	RCC -> AHB1ENR |= (1 << 0); /* Clock for GPIOA */
+	RCC -> APB1ENR |= (1 << 0); /* Clock for DAC */
+
+	GPIOA -> MODER |= (1 << 8); /* PA4 to Analog mode */
+	GPIOA -> MODER |= (1 << 9); /* PA4 to Analog mode */
+
+	DAC -> CR |= (1 << 0); /* Enable DAC channel 1 */
+	DAC -> CR &= ~(1 << 2); /* Disable external trigger for Digital-Analog conversion */
+
+}
+
+int main()
+{
+	init();
+}
